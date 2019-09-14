@@ -1,0 +1,31 @@
+.question
+  .container
+    .container__upper-info
+      .container__upper-info__title
+        =question.title
+      .container__upper-info__questioner
+        =question.user.name
+    .container__category-info
+      =show_category(question)
+      //以下三行をまとめた
+      //-question.categorys.each do |category|
+      //  =link_to category_questions_path(category.id) do
+      //    =category.name
+    .container__middle-info
+      %p.container__middle-info__text
+        =question.content
+    .functions-btns
+      =buttons_link(question)
+//以下の記述内容を一行に収めることで見通しを良くした。
+-#
+      -if @path.is('questions#index', 'questions#search')
+        %ul.functions-btns__btn
+          -if current_user_has?(question)
+            %li.functions-btns__btn__edit
+              = link_to 'edit', edit_question_path(question), method: 'get'
+            %li.functions-btns__btn__delete
+              = link_to 'delete', "/questions/#{question.id}", method: 'delete'
+          -if user_signed_in?
+            %li.functions-btns__btn__show
+              = link_to 'answer', question_path(question), method: 'get'
+-#

@@ -1,0 +1,24 @@
+.header
+  %h2.title
+    %a{href: root_path} qweet
+  %form{action: "/questions/search", method: "get"}
+    %ul.search
+      %li.search__content
+        %input{name: "keyword", size: "15", id: "search__query"}
+      %li.search__content
+        %input{type: "submit", value: "検索"}
+  %ul.nav
+    -if user_signed_in?
+      %li.nav__content
+        =current_user.name
+      %li.nav__content
+        =link_to "質問する", new_question_path, method: 'get'
+      %li.nav__content
+        =link_to "ログアウト", destroy_user_session_path, method: 'delete'
+    -else
+      %li.nav__content
+        =link_to "新規登録", new_user_registration_path, method: 'post'
+      %li.nav__content
+        =link_to "ログイン", new_user_session_path, method: 'get'
+    %li.nav__content
+      =link_to "カテゴリ登録", new_category_path, method: 'get'

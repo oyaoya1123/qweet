@@ -1,0 +1,17 @@
+.wrapper
+  .new-edit-question
+    %h2 修正フォーム
+    %br/
+    = form_for @question do |f|
+      タイトル
+      %br/
+      = f.text_field :title
+      %br/
+      質問内容
+      %br/
+      = f.text_area :content, size: "40x5"
+      %br/
+      = f.submit "Send"
+      %br/
+      %br/
+      =link_to "一覧に戻る", root_path

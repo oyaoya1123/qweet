@@ -1,0 +1,7 @@
+.notification
+  %p
+    - flash.each do |key, value|
+      = content_tag :div, value, class: key
+  //- question.errors.full_messages.each do |message|
+  //  = message
+  //  %br/

@@ -1,0 +1,131 @@
+.wrapper {
+  //overflow: hidden;
+  .header {
+    position: fixed;
+    width: 100%;
+    height: 140px;
+    background-color: #ffffff;
+    border-bottom: double 5px #000080;
+    .title{
+      text-align: center;
+      padding-top: 30px;
+      padding-bottom: 15px;
+      font-size: 40px;
+      color: #0000ff;
+    }
+    .search {
+      float: left;
+      padding: 0 20px;
+      &__content {
+        float: left;
+        padding-left: 5px;
+      }
+    }
+    .nav {
+      //display: flex;
+      float: right;
+      padding-right: 20px;
+      //justify-content: flex-end;
+      &__content {
+        float: left;
+        padding: 0px 10px;
+      }
+    }
+  }
+  .contents {
+    padding-top: 140px;
+    height: 100vh;
+    .content-left {
+      float: left;
+      width: calc(100% - 200px);
+      min-width: 600px;
+      //height: 100vh;
+      border: solid 1px #000080;
+      background-color: #4169e1;
+      .question {
+        margin: 40px auto;
+        border: solid 1px #000080;
+        background-color: #ffffff;
+        width: 500px;
+        .container {
+          padding: 10px 10px;
+          width: 100%;
+          &__upper-info {
+            padding: 10px 0;
+            display: flex;
+            width: 100%;
+            &__title {
+              width: 80%;
+            }
+            &__questioner {
+              width: 20%;
+              //text-align: right;
+            }
+          }
+          &__category-info {
+            padding-bottom: 10px;
+          }
+          &__middle-info {
+            &__text {
+            }
+          }
+        }
+        .functions-btns {
+          padding: 10px 0;
+          &__btn {
+            display: flex;
+            justify-content: center;
+            li {
+              margin: 0 10px;
+              padding: 0 10px;
+              border: solid 1px #000080;
+            }
+            &__edit {
+              border: solid 1px #ffffff;
+            }
+            &__delete {
+              border: solid 1px #ffffff;
+            }
+            &__show {
+              border: solid 1px #ffffff;
+            }
+          }
+        }
+      }
+    }
+    .content-right {
+      //float: right;
+      position: fixed;
+      right: 0;
+      width: 200px;
+      //height: 300px;
+      border: solid 1px #000080;
+      background-color: #00bfff;
+      .categorys {
+        font-size: 20px;
+        text-align: center;
+      }
+    }
+    .left-content-mini-width {
+      left: 600px;
+    }
+  }
+  .new-edit-question {
+    text-align: center;
+    padding-top: 40px;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}

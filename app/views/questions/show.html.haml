@@ -1,0 +1,20 @@
+.wrapper.clearfix
+  = render partial: 'header'
+  .contents.clearfix
+    .content-left
+      = render partial: 'notifications'
+      = render partial: "question", locals: { question: @question }
+      .question
+        .container
+          %h2 登録フォーム
+          = form_for [@question, @answer] do |f|
+            %br/
+            回答内容
+            %br/
+            = f.text_area :response, size: "40x5", class: "textarea"
+            %br/
+            = f.submit "Send", id: "button"
+      = render partial: "answer", collection: @answers
+    .content-right
+      .categorys
+        = render partial: 'category', collection: @categorys

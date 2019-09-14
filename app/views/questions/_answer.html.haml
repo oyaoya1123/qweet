@@ -1,0 +1,16 @@
+.question
+  .container
+    .container__upper-info
+      .container__upper-info__title
+        回答
+      .container__upper-info__questioner
+        =answer.user.name
+    .container__middle-info
+      %p.container__text
+        =answer.response
+    .functions-btns
+      %ul.functions-btns__btn
+        %li.functions-btns__btn__edit
+          edit
+        %li.functions-btns__btn__delete
+          delete

@@ -1,0 +1,9 @@
+.wrapper.clearfix
+  = render partial: 'header'
+  .contents.clearfix
+    .content-left
+      //= render 'notifications', locals: { question: @question }
+      = render partial: 'question', collection: @questions
+    .content-right
+      .categorys
+        = render partial: 'category', collection: @categorys

@@ -1,0 +1,13 @@
+.wrapper
+  .new-edit-question
+    %h2 登録フォーム
+    %br/
+    = form_for @category,:url => {:action => :create} do |f|
+      カテゴリ名
+      %br/
+      = f.text_field :name
+      %br/
+      = f.submit "Send"
+      %br/
+      %br/
+      =link_to "一覧に戻る", root_path
