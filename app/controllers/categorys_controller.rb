@@ -1,6 +1,7 @@
 class CategorysController < ApplicationController
 
   #before_action :set_category
+  before_action :check_admin, only: [:new, :create, :edit, :update]
 
   def index
   end

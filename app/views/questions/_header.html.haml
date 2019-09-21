@@ -7,6 +7,11 @@
         %input{name: "keyword", size: "15", id: "search__query"}
       %li.search__content
         %input{type: "submit", value: "検索"}
+  %form{action: questions_path(format: :csv), method: "get"}
+    %ul.search
+      %li.search__content
+        %input{type: "submit", value: "csv出力"}
+        %input{type: "hidden", name: "csv_category_id", value: @category}
   %ul.nav
     -if user_signed_in?
       %li.nav__content

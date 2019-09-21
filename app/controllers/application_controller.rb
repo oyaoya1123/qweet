@@ -16,4 +16,15 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
   end
 
+  private
+
+  def check_admin
+    if user_signed_in?
+      if current_user.role != 'admin'
+        redirect_to root_path
+        flash[:notice] = "管理者のみ閲覧できます"
+      end     
+    end
+  end
+
 end

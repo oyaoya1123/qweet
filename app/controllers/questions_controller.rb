@@ -3,17 +3,26 @@ class QuestionsController < ApplicationController
   before_action :set_category
 
   def index
-    if params[:category_id]
-      @category = Category.find(params[:category_id])
-      @questions = @category.questions.includes(:user).order("created_at DESC")
+    #csv出力用と一覧表示用のcategory_idがある
+    @category = params[:csv_category_id] || params[:category_id]
+    if @category
+      @mycategory = Category.find(@category)
+      @questions = @mycategory.questions.includes(:user).order("created_at DESC")
     else
       ##n+1問題解決のために色々試したが解決せず。
       #@questions = Question.all.order("created_at DESC")
-      #@questions = Question.includes(:user).order("created_at DESC")
+      #以下の記述だとbulletでn+1問題が検出されない。この書き方でいいのかな
+      @questions = Question.includes(:user).order("created_at DESC")
+      #@questions = Question.includes(:user).includes(:categorys).order("created_at DESC")
       #@questions = Question.includes(:user).includes(:categorys).each{|question| p question.categorys.name}
       #@questions = Question.includes(:categorys).order("created_at DESC")
-      @questions = Question.includes(:user, {question_categorys: :category}).order("created_at DESC")
+      #@questions = Question.includes(:user, {categorys: :question_categorys}).order("created_at DESC")
+      #@questions = Question.includes(:user).includes(categorys: :question_categorys).order("created_at DESC")
       #binding.pry
+    end
+    respond_to do |format|
+      format.html
+      format.csv { send_data render_to_string, type: :csv, filename: "questions_category.csv" }
     end
   end
 
@@ -61,7 +70,7 @@ class QuestionsController < ApplicationController
   def show
     @question = Question.find(params[:id])
     @answer = Answer.new
-    @answers = @question.answers.all
+    @answers = @question.answers.all.includes(:user)
   end
 
   def set_category
