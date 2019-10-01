@@ -4,7 +4,6 @@
     .content-left
       //= render 'notifications', locals: { question: @question }
       = render 'notifications'
-      = @category
       = render partial: 'question', collection: @questions
     .content-right
       .categorys
